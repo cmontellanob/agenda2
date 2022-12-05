@@ -13,4 +13,8 @@ class Ciudad extends Model
         'nombre',
         'departamento'
     ];
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 }

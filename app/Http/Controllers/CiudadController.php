@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ciudad;
 use Illuminate\Http\Request;
+use App\Http\Requests\CiudadRequest;
 
 class CiudadController extends Controller
 {
@@ -14,17 +15,20 @@ class CiudadController extends Controller
      */
     public function index()
     {
-        return  response()->json(Ciudad::all(),200);
-        
+        return  response()->json(Ciudad::all(), 200);
     }
 
-    public function store(Request $request)
+    public function store(CiudadRequest $request)
     {
-        
-        $ciudad=Ciudad::create($request->all());
 
-        return response()->json($ciudad,201);
+        $ciudad = Ciudad::create($request->all());
 
+        return response()->json(
+            ["transaccion" => true, 
+             "mensaje" => "Ciudad creada",
+             "response" => $ciudad],
+            201
+        );
     }
 
     /**
@@ -35,7 +39,7 @@ class CiudadController extends Controller
      */
     public function show(Ciudad $ciudad)
     {
-        return response()->json($ciudad,200);
+        return response()->json($ciudad, 200);
     }
 
 
@@ -50,7 +54,7 @@ class CiudadController extends Controller
     public function update(Request $request, Ciudad $ciudad)
     {
         $ciudad->update($request->all());
-        return response()->json($ciudad,200);
+        return response()->json($ciudad, 200);
     }
 
     /**
@@ -62,6 +66,6 @@ class CiudadController extends Controller
     public function destroy(Ciudad $ciudad)
     {
         $ciudad->delete();
-        return response()->json(null,204);
+        return response()->json(null, 204);
     }
 }

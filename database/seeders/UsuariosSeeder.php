@@ -19,10 +19,12 @@ class UsuariosSeeder extends Seeder
         Usuario::factory()->create([
             'nombres' => 'Admin',
             'email' => 'admin@sis258.com',
+            'rol' => 'admin',
         ]);
         Usuario::factory()->create([
             'nombres' => 'Usuario',
             'email' => 'usuario@sis258.com',
+            'rol' => 'usuario',
         ]);
     }
 }

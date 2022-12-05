@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nombres',35);
             $table->string('apellidos',35);
             $table->string('email')->unique();
+            $table->string('rol',35);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
