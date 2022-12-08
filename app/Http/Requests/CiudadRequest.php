@@ -15,6 +15,20 @@ class CiudadRequest extends FormRequest
      */
     public function authorize()
     {
+        $usuario=$this->attributes->get('usuario');
+        
+        $rol=$usuario->rol;
+        if ($rol!='admin') {
+            throw new HttpResponseException(response()->json([
+                'error'   => true,
+                'message'   => 'No tienes permiso para realizar esta acción',
+                'status' => 401
+    
+            ]));
+           
+        }
+      
+   
         return true;
     }
 
